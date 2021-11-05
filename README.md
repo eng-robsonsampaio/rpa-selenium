@@ -17,12 +17,12 @@ pip install virtualenv
 ```
 python -m venv ~/.rpa-selenium
 ```
-# Ative o ambiente virtual
+## Ative o ambiente virtual
 Windows case
 ```
 source ~/.rpa-selenium/Scripts/activate
 ```
-# Instale o packages necessários para o projeto
+## Instale o packages necessários para o projeto
 ```
 pip install -r requirements.txt
 ```
