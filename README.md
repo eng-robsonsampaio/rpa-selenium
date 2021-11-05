@@ -18,7 +18,7 @@ pip install virtualenv
 python -m venv ~/.rpa-selenium
 ```
 # Ative o ambiente virtual
-Windowns case
+Windows case
 ```
 source ~/.rpa-selenium/Scripts/activate
 ```
