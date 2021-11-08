@@ -1,12 +1,16 @@
+from time import sleep
+from credentials import login_dte
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 
-from time import sleep
-from credentials import login_dte
+options = webdriver.ChromeOptions()
+options.add_extension(r'.\extensions\Web-PKI.crx')
 
-browser = webdriver.Chrome(r'.\drivers\chromedriver.exe')
+browser = webdriver.Chrome(r'.\drivers\chromedriver.exe', options=options)
 browser.get(login_dte.URL)
 try:
     elem = WebDriverWait(browser, 30).until(
