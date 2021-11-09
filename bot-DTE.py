@@ -1,3 +1,4 @@
+
 from time import sleep
 from credentials import login_dte
 
@@ -18,14 +19,9 @@ try:
 finally:
     sleep(1)
     browser.find_element_by_xpath("//a[@routerlink='/certificado']").click()
-# print(len(elements))
-
-# element_cnpj = browser.find_element_by_id('login')
-# element_cnpj.send_keys(login.CNPJ)
-
-# element_senha = browser.find_element_by_id('senha')
-# element_senha.send_keys(login.PSK)
-
-# browser.find_element_by_xpath("//button[@name='entrar']").click()
+    sleep(3)
+    browser.find_element_by_xpath("/html/body/my-app/div/div/div/app-certificado/div/ul/li[2]/button").click()
+    sleep(3)
+    alert = browser.switch_to_alert()
 
 input('')
