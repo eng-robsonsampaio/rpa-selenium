@@ -1,6 +1,7 @@
 
 from time import sleep, time
 from credentials import login_dte
+from constants.const import DOWNLOAD_PATH, DRIVER_PATH, WEB_PKI_PATH
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -16,10 +17,12 @@ import pyautogui
 start_time = time()
 
 options = webdriver.ChromeOptions()
-options.add_extension(r'.\extensions\Web-PKI.crx')
+prefs = {'download.default_directory' : DOWNLOAD_PATH}
+options.add_experimental_option('prefs', prefs)
+options.add_extension(WEB_PKI_PATH)
 options.add_argument('--ignore-ssl-errors=yes')
 options.add_argument('--ignore-certificate-errors')
-driver = webdriver.Chrome(r'.\drivers\chromedriver.exe', options=options)
+driver = webdriver.Chrome(DRIVER_PATH, options=options)
 driver.get(login_dte.URL)
 driver.maximize_window()
 
@@ -107,22 +110,7 @@ finally:
     driver.find_element(By.XPATH, '/html/body/app-root/div/app-nfe/div/div/section[2]/div/div/div/div/app-nfe-entradas/div[1]/div[2]/div[1]/button').click()
     sleep(3)
     driver.find_element(By.XPATH, '/html/body/app-root/div/app-nfe/div/div/section[2]/div/div/div/div/app-nfe-entradas/div[1]/div[2]/div[2]/div/button').click()
-    sleep(3)
+    sleep(1)
     driver.find_element(By.XPATH, '/html/body/app-root/div/app-nfe/div/div/section[2]/div/div/div/div/app-nfe-entradas/div[1]/div[2]/div[2]/div/ul/li[2]/a').click()
-
-# try:    
-#     sleep(3)
-#     driver.find_element(By.XPATH, '/html/body/app-root/div/app-nfe/div/div/section[2]/div/div/div/div/app-nfe-entradas/div[1]/div[2]/div[1]/button')
-#     print(len(elementos))
-# finally:
-#     pass
-    # for el in elementos:
-    #     print('Elemento: ', el)
-    # driver.find_element(By.XPATH, '//button[@id="tab_entradas"]').click()
-
-
-#     # sleep(3)
-#     # driver.find_element(By.CLASS_NAME, "btn bg-default btn-sm dropdown-toggle").click()
-
   
 print(f'---- {(time() - start_time)} seconds ----')
