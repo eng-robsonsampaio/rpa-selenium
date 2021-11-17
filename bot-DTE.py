@@ -1,5 +1,7 @@
 
 from time import sleep, time
+
+from selenium.webdriver.common import alert
 from credentials import login_dte
 from constants.const import DOWNLOAD_PATH, DRIVER_PATH, WEB_PKI_PATH
 
@@ -83,15 +85,19 @@ try:
     )
 finally:
     driver.find_element(By.XPATH, "/html/body/my-app/div/div/div/app-home/section/div/div[2]/div/ul/li/a/div").click()
-
-
-    sleep(5)
-    pyautogui.hotkey('enter')
-    sleep(5)
-    pyautogui.hotkey('enter')
-    driver.switch_to.window(driver.window_handles[-1])
-    # get current window handle
     sleep(1)
+    print(f'Número de janelas: {len(driver.window_handles)}')
+    driver.switch_to.window(driver.window_handles[-1])
+    
+    WebDriverWait(driver, 5).until(EC.alert_is_present())
+    alerta = driver.switch_to.alert
+    alerta.accept()
+    
+    WebDriverWait(driver, 5).until(EC.alert_is_present())
+    alerta = driver.switch_to.alert
+    alerta.accept()
+    # get current window handle
+    sleep(2)
     p = driver.current_window_handle
     print(f'Windows title:  {driver.title}')
     print(f'Windows habdke:  {p}')
