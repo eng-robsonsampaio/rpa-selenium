@@ -8,7 +8,7 @@ from constants.const import DOWNLOAD_PATH, DRIVER_PATH, WEB_PKI_PATH
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.alert import Alert
@@ -108,15 +108,32 @@ try:
     elem = WebDriverWait(driver, 30).until(
         EC.element_to_be_clickable((By.ID, 'menu_indicadores_nfe'))
     )
-    print(elem)
 finally:
-    sleep(3)
+    print('Menu indicadores NFe')
     driver.find_element(By.ID, "menu_indicadores_nfe").click()
-    sleep(3)
-    driver.find_element(By.XPATH, '/html/body/app-root/div/app-nfe/div/div/section[2]/div/div/div/div/app-nfe-entradas/div[1]/div[2]/div[1]/button').click()
-    sleep(3)
-    driver.find_element(By.XPATH, '/html/body/app-root/div/app-nfe/div/div/section[2]/div/div/div/div/app-nfe-entradas/div[1]/div[2]/div[2]/div/button').click()
-    sleep(1)
-    driver.find_element(By.XPATH, '/html/body/app-root/div/app-nfe/div/div/section[2]/div/div/div/div/app-nfe-entradas/div[1]/div[2]/div[2]/div/ul/li[2]/a').click()
+
+try:
+    elem = WebDriverWait(driver, 30).until(
+        EC.element_to_be_clickable((By.XPATH, '/html/body/app-root/div/app-nfe/div/div/section[2]/div/div/div/div/app-nfe-entradas/div[1]/div[2]/div[1]/button'))
+    )
+finally:
+    print('Pesquisar')
+    driver.find_element(By.XPATH, "/html/body/app-root/div/app-nfe/div/div/section[2]/div/div/div/div/app-nfe-entradas/div[1]/div[2]/div[1]/button").click()
+
+try:
+    elem = WebDriverWait(driver, 30).until(
+        EC.element_to_be_clickable((By.XPATH, '/html/body/app-root/div/app-nfe/div/div/section[2]/div/div/div/div/app-nfe-entradas/div[1]/div[2]/div[2]/div/button'))
+    )
+finally:
+    print('Download')
+    driver.find_element(By.XPATH, "/html/body/app-root/div/app-nfe/div/div/section[2]/div/div/div/div/app-nfe-entradas/div[1]/div[2]/div[2]/div/button").click()
+
+try:
+    elem = WebDriverWait(driver, 30).until(
+        EC.element_to_be_clickable((By.XPATH, '/html/body/app-root/div/app-nfe/div/div/section[2]/div/div/div/div/app-nfe-entradas/div[1]/div[2]/div[2]/div/ul/li[2]/a'))
+    )
+finally:
+    print('Download CSV')
+    driver.find_element(By.XPATH, "/html/body/app-root/div/app-nfe/div/div/section[2]/div/div/div/div/app-nfe-entradas/div[1]/div[2]/div[2]/div/ul/li[2]/a").click()
   
 print(f'---- {(time() - start_time)} seconds ----')
