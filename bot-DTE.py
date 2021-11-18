@@ -33,107 +33,79 @@ print(f'Windows title:  {driver.title}')
 print(f'Windows habdke:  {p}')
 
 sleep(2)
-try:
-    elem = WebDriverWait(driver, 30).until(
-        EC.element_to_be_clickable((By.XPATH, "//a[@routerlink='/certificado']"))
-        )
-finally:
-    driver.find_element(By.XPATH, "//a[@routerlink='/certificado']").click()
+elem = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, "//a[@routerlink='/certificado']")))
+elem.click()
 
-try:
-    elem = WebDriverWait(driver, 30).until(
-        EC.element_to_be_clickable((By.XPATH, "/html/body/my-app/div/div/div/app-certificado/div/ul/li[2]/button")))
-finally:
-#     sleep(2)
-    driver.find_element(By.XPATH, "/html/body/my-app/div/div/div/app-certificado/div/ul/li[2]/button").click()
-    sleep(3)
-    pyautogui.hotkey('tab', 'tab', 'enter', interval=0.1)
+elem = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, "/html/body/my-app/div/div/div/app-certificado/div/ul/li[2]/button")))
+elem.click()
+sleep(3)
+pyautogui.hotkey('tab', 'tab', 'enter', interval=0.1)
 
-try:
-    elem = WebDriverWait(driver, 30).until(
+elem = WebDriverWait(driver, 30).until(
         EC.element_to_be_clickable((By.XPATH, "/html/body/my-app/div/div/div/app-e-cnpj/div/div[2]/table/tbody/tr[1]"))
     )
-finally:
-    driver.find_element(By.XPATH, "/html/body/my-app/div/div/div/app-e-cnpj/div/div[2]/table/tbody/tr[1]").click()
+elem.click()    
 
-try:
-    elem = WebDriverWait(driver, 30).until(
+elem = WebDriverWait(driver, 30).until(
         EC.element_to_be_clickable((By.XPATH, "/html/body/my-app/div/div/div/app-e-cnpj/div/div[3]/button[2]"))
     )
-finally:
-    driver.find_element(By.XPATH, "/html/body/my-app/div/div/div/app-e-cnpj/div/div[3]/button[2]").click()
-    sleep(3)
-    pyautogui.hotkey('tab', 'tab', 'enter', interval=0.1)
+elem.click()
+sleep(3)
+pyautogui.hotkey('tab', 'tab', 'enter', interval=0.1)
 
-try:
-    elem = WebDriverWait(driver, 30).until(
-        EC.element_to_be_clickable((By.XPATH, "/html/body/my-app/div/div/div/app-perfil/div/div[1]/table/tbody/tr/td[1]"))
-    )
-finally:
-    driver.find_element(By.XPATH, "/html/body/my-app/div/div/div/app-perfil/div/div[1]/table/tbody/tr/td[1]").click()
+elem = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, "/html/body/my-app/div/div/div/app-perfil/div/div[1]/table/tbody/tr/td[1]")))
+elem.click()
 
-try:
-    elem = WebDriverWait(driver, 30).until(
+elem = WebDriverWait(driver, 30).until(
         EC.element_to_be_clickable((By.XPATH, "/html/body/my-app/div/div/div/app-perfil/div/div[2]/button[2]"))
     )
-finally:
-    driver.find_element(By.XPATH, "/html/body/my-app/div/div/div/app-perfil/div/div[2]/button[2]").click()
+elem.click()
 
-try:
-    elem = WebDriverWait(driver, 30).until(
+elem = WebDriverWait(driver, 30).until(
         EC.element_to_be_clickable((By.XPATH, "/html/body/my-app/div/div/div/app-home/section/div/div[2]/div/ul/li/a/div"))
     )
-finally:
-    driver.find_element(By.XPATH, "/html/body/my-app/div/div/div/app-home/section/div/div[2]/div/ul/li/a/div").click()
-    sleep(1)
-    print(f'Número de janelas: {len(driver.window_handles)}')
-    driver.switch_to.window(driver.window_handles[-1])
     
-    WebDriverWait(driver, 5).until(EC.alert_is_present())
-    alerta = driver.switch_to.alert
-    alerta.accept()
-    
-    WebDriverWait(driver, 5).until(EC.alert_is_present())
-    alerta = driver.switch_to.alert
-    alerta.accept()
-    # get current window handle
-    sleep(2)
-    p = driver.current_window_handle
-    print(f'Windows title:  {driver.title}')
-    print(f'Windows habdke:  {p}')
-    siget_url = driver.current_url
-    print(f'\n\nURL{siget_url}\n\n')
+elem.click()
+sleep(1)
+print(f'Número de janelas: {len(driver.window_handles)}')
+driver.switch_to.window(driver.window_handles[-1])
 
-try:
-    elem = WebDriverWait(driver, 30).until(
+WebDriverWait(driver, 5).until(EC.alert_is_present())
+alerta = driver.switch_to.alert
+alerta.accept()
+
+WebDriverWait(driver, 5).until(EC.alert_is_present())
+alerta = driver.switch_to.alert
+alerta.accept()
+# get current window handle
+sleep(2)
+p = driver.current_window_handle
+print(f'Windows title:  {driver.title}')
+print(f'Windows habdke:  {p}')
+siget_url = driver.current_url
+print(f'\n\nURL{siget_url}\n\n')
+
+elem = WebDriverWait(driver, 30).until(
         EC.element_to_be_clickable((By.ID, 'menu_indicadores_nfe'))
-    )
-finally:
-    print('Menu indicadores NFe')
-    driver.find_element(By.ID, "menu_indicadores_nfe").click()
+    )   
+print('Menu indicadores NFe')
+elem.click()
 
-try:
-    elem = WebDriverWait(driver, 30).until(
+elem = WebDriverWait(driver, 30).until(
         EC.element_to_be_clickable((By.XPATH, '/html/body/app-root/div/app-nfe/div/div/section[2]/div/div/div/div/app-nfe-entradas/div[1]/div[2]/div[1]/button'))
     )
-finally:
-    print('Pesquisar')
-    driver.find_element(By.XPATH, "/html/body/app-root/div/app-nfe/div/div/section[2]/div/div/div/div/app-nfe-entradas/div[1]/div[2]/div[1]/button").click()
-
-try:
-    elem = WebDriverWait(driver, 30).until(
+print('Pesquisar')
+elem.click()
+elem = WebDriverWait(driver, 30).until(
         EC.element_to_be_clickable((By.XPATH, '/html/body/app-root/div/app-nfe/div/div/section[2]/div/div/div/div/app-nfe-entradas/div[1]/div[2]/div[2]/div/button'))
     )
-finally:
-    print('Download')
-    driver.find_element(By.XPATH, "/html/body/app-root/div/app-nfe/div/div/section[2]/div/div/div/div/app-nfe-entradas/div[1]/div[2]/div[2]/div/button").click()
+print('Download')
+elem.click()    
 
-try:
-    elem = WebDriverWait(driver, 30).until(
+elem = WebDriverWait(driver, 30).until(
         EC.element_to_be_clickable((By.XPATH, '/html/body/app-root/div/app-nfe/div/div/section[2]/div/div/div/div/app-nfe-entradas/div[1]/div[2]/div[2]/div/ul/li[2]/a'))
     )
-finally:
-    print('Download CSV')
-    driver.find_element(By.XPATH, "/html/body/app-root/div/app-nfe/div/div/section[2]/div/div/div/div/app-nfe-entradas/div[1]/div[2]/div[2]/div/ul/li[2]/a").click()
+print('Download CSV')
+elem.click()
   
 print(f'---- {(time() - start_time)} seconds ----')
